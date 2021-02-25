@@ -1,0 +1,3 @@
+function [ FinalT ] = Fk(Tbase, q, l)
+    FinalT = Tbase * Tz(l(1)) * Rz(q(1)) * Tz(l(2)) * Ry(q(2)) * Tz(l(3)) * Rz(q(3)) * Tz(l(4)) * Ry(q(4)) ...
+             * Tz(l(5)) * Rz(q(5)) * Tz(l(6)) * Ry(q(6)) * Tz(l(7)) * Rz(q(7));
