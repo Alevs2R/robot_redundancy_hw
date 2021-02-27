@@ -3,8 +3,8 @@ function [ new_q ] = Ik_weighted(delta_r, q, l, Tbase, W)
     
     jacobian = Jq(fk_transform, Tbase, q, l);
 
-    # remove zero rows
-    % jacobian = jacobian([1,2,6], :);
+    # keep only position jacobians, not orientation
+    jacobian = jacobian([1,2,3], :);
 
     K = inv(W)*jacobian'*inv(jacobian*inv(W)*jacobian');
 

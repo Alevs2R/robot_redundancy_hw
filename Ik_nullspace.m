@@ -2,6 +2,10 @@ function [ new_q ] = Ik_nullspace(delta_r, q, l, Tbase)
     fk_transform = Fk(Tbase, q, l);
     
     jacobian = Jq(fk_transform, Tbase, q, l);
+
+    # keep only position jacobians, not orientation
+    jacobian = jacobian([1,2,3], :);
+
     H = H_manipulability(fk_transform, Tbase, q, l);
 
     delta_q = 0.001;

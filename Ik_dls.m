@@ -3,10 +3,10 @@ function [ new_q ] = Ik_dls(delta_r, q, l, Tbase, mu_square)
     
     jacobian = Jq(fk_transform, Tbase, q, l);
 
-    # remove zero rows
-    % jacobian = jacobian([1,2,6], :);
+    # keep only position jacobians, not orientation
+    jacobian = jacobian([1,2,3], :);
 
-    K = jacobian'*inv(jacobian*jacobian' + mu_square*eye(6));
+    K = jacobian'*inv(jacobian*jacobian' + mu_square*eye(3));
 
     delta_q = K*delta_r;
     new_q = q+delta_q;
